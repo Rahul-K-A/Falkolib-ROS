@@ -12,8 +12,11 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   rospy
   sensor_msgs
-  falkolib REQUIRED
+  tf2
 )
+
+find_package(falkolib REQUIRED)
+find_package(Eigen3 3.3 REQUIRED)
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
@@ -107,7 +110,7 @@ find_package(catkin REQUIRED COMPONENTS
 catkin_package(
    INCLUDE_DIRS include
 #  LIBRARIES falkolib_feature_extractor
-   CATKIN_DEPENDS geometry_msgs roscpp rospy sensor_msgs
+   CATKIN_DEPENDS geometry_msgs roscpp rospy sensor_msgs tf2
    DEPENDS system_lib
 )
 
@@ -135,7 +138,7 @@ include_directories(
 ## Declare a C++ executable
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
- add_executable(${PROJECT_NAME}_node src/falkolib_feature_extractor.cpp)
+ add_executable(${PROJECT_NAME}_node src/feature_extractor.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -150,7 +153,8 @@ include_directories(
 ## Specify libraries to link a library or executable target against
 target_link_libraries(${PROJECT_NAME}_node
   ${catkin_LIBRARIES}
-  ${falkolib_LIBRARY_DIRS}
+  ${falkolib_LIBRARIES}
+  Eigen3::Eigen
 )
 
 #############
