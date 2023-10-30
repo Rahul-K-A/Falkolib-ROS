@@ -15,6 +15,10 @@
 #include <falkolib/Feature/FALKO.h>
 #include <falkolib/Feature/FALKOExtractor.h>
 #include <falkolib/Matching/AHTMatcher.h>
+
 #include <tf2_ros/transform_listener.h>
+#include <visualization_msgs/Marker.h>
+#include <visualization_msgs/MarkerArray.h>
+
 using namespace ros;
 using namespace std;
